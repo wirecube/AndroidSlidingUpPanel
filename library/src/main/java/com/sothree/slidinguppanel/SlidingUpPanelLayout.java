@@ -1373,7 +1373,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
 
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
-            onPanelDragged(top);
+            onPanelDragged(top+dy);
             invalidate();
         }
 
