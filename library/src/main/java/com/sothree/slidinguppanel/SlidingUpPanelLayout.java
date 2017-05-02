@@ -1374,8 +1374,9 @@ public class SlidingUpPanelLayout extends ViewGroup {
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
             onPanelDragged(top);
-            invalidate();
-            requestLayout();
+            mSlideableView.requestLayout();
+//            requestLayout();
+//            invalidate();
         }
 
         @Override
