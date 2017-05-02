@@ -1410,20 +1410,20 @@ public class SlidingUpPanelLayout extends ViewGroup {
                 target = computePanelTopPosition(0.0f);
             }
 
-            final float startVal = mSlideableView.getTop();
-            ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
-            animator.setDuration(400);
-            final int finalTarget = target;
-            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    onViewPositionChanged(mSlideableView, 0, (int) (startVal + (finalTarget - startVal) * animation.getAnimatedFraction()), 0, 0);
-                }
-            });
+//            final float startVal = mSlideableView.getTop();
+//            ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
+//            animator.setDuration(400);
+//            final int finalTarget = target;
+//            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//                @Override
+//                public void onAnimationUpdate(ValueAnimator animation) {
+//                    onViewPositionChanged(mSlideableView, 0, (int) (startVal + (finalTarget - startVal) * animation.getAnimatedFraction()), 0, 0);
+//                }
+//            });
+//
+//            animator.start();
 
-            animator.start();
-
-//            mDragHelper.settleCapturedViewAt(releasedChild.getLeft(), target);
+            mDragHelper.settleCapturedViewAt(releasedChild.getLeft(), target);
             invalidate();
         }
 
