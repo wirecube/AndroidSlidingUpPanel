@@ -618,9 +618,9 @@ public class ViewDragHelper {
         }
 
         final int duration = computeSettleDuration(mCapturedView, dx, dy, xvel, yvel);
-        setDragState(STATE_SETTLING);
         mScroller.startScroll(startLeft, startTop, dx, dy, duration);
 
+        setDragState(STATE_SETTLING);
         return true;
     }
 
