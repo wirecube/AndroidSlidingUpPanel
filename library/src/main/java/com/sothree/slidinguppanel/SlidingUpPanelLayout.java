@@ -1148,8 +1148,9 @@ public class SlidingUpPanelLayout extends ViewGroup {
         // Recompute the slide offset based on the new top position
         mSlideOffset = computeSlideOffset(newTop);
         applyParallaxForCurrentSlideOffset();
+        int panelTopPx = computePanelTopPosition(0) - newTop + getCollapsedPanelHeight();
         // Dispatch the slide event
-        dispatchOnPanelSlide(mSlideableView, newTop);
+        dispatchOnPanelSlide(mSlideableView, panelTopPx);
         // If the slide offset is negative, and overlay is not on, we need to increase the
         // height of the main content
         LayoutParams lp = (LayoutParams) mMainView.getLayoutParams();
