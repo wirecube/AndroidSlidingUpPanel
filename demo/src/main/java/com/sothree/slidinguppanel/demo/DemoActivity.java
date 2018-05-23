@@ -86,7 +86,7 @@ public class DemoActivity extends ActionBarActivity {
         mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         mLayout.addPanelSlideListener(new PanelSlideListener() {
             @Override
-            public void onPanelSlide(View panel, float slideOffset) {
+            public void onPanelSlide(View panel, float slideOffset, int newTop) {
                 Log.i(TAG, "onPanelSlide, offset " + slideOffset);
             }
 
