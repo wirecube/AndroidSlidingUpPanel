@@ -236,7 +236,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
          * @param panel       The child view that was moved
          * @param slideOffset The new offset of this sliding pane within its range, from 0-1
          */
-        public void onPanelSlide(View panel, float slideOffset);
+        public void onPanelSlide(View panel, float slideOffset, int panelTop);
 
         /**
          * Called when a sliding panel state changes
@@ -252,7 +252,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
      */
     public static class SimplePanelSlideListener implements PanelSlideListener {
         @Override
-        public void onPanelSlide(View panel, float slideOffset) {
+        public void onPanelSlide(View panel, float slideOffset, int panelTop) {
         }
 
         @Override
@@ -410,8 +410,8 @@ public class SlidingUpPanelLayout extends ViewGroup {
      *
      * @param val A height in pixels
      */
-    public void setPanelHeight(int val) {
-        if (getPanelHeight() == val) {
+    public void setCollapsedPanelHeight(int val) {
+        if (getCollapsedPanelHeight() == val) {
             return;
         }
 
@@ -453,7 +453,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
     /**
      * @return The current collapsed panel height
      */
-    public int getPanelHeight() {
+    public int getCollapsedPanelHeight() {
         return mPanelHeight;
     }
 
@@ -643,10 +643,10 @@ public class SlidingUpPanelLayout extends ViewGroup {
     }
 
 
-    void dispatchOnPanelSlide(View panel) {
+    void dispatchOnPanelSlide(View panel, int newTop) {
         synchronized (mPanelSlideListeners) {
             for (PanelSlideListener l : mPanelSlideListeners) {
-                l.onPanelSlide(panel, mSlideOffset);
+                l.onPanelSlide(panel, mSlideOffset, newTop);
             }
         }
     }
@@ -1149,7 +1149,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
         mSlideOffset = computeSlideOffset(newTop);
         applyParallaxForCurrentSlideOffset();
         // Dispatch the slide event
-        dispatchOnPanelSlide(mSlideableView);
+        dispatchOnPanelSlide(mSlideableView, newTop);
         // If the slide offset is negative, and overlay is not on, we need to increase the
         // height of the main content
         LayoutParams lp = (LayoutParams) mMainView.getLayoutParams();
